@@ -44,4 +44,3 @@ npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ## 참고
 [typescripteslint]: https://typescript-eslint.io/docs/development/architecture/packages/
 [typescript-eslint.io][typescripteslint]
-[]
