@@ -76,10 +76,11 @@ yarn run eslint yourfile.js
 + <code>"error"</code> or <code>2</code> - 에러(exit 코드 1을 반환한다.)
 위의 3가지 수준을 통해서 ESLint는 세밀한 제어를 가능하게 한다.
 
-### extends
-rules에 확장된 값을 추가한다.
 
-만약 rules와 eslint 둘 다 존재하지 않으면, ESLint는 파일 검사 수행하지 않는다.
+### extends
+여러 규칙을 추가한 모듈이다.
+
+만약 rules와 extends 둘 다 존재하지 않으면, ESLint는 파일 검사 수행하지 않는다.
 
 npm init @eslint/config를 했을때 기본적으로
 
