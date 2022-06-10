@@ -28,12 +28,20 @@ npm i -D @typescript-eslint/eslint-plugin @typescript-eslint/parser
   "extends": ["plugin:@typescript-eslint/recommended"],
   "rules": {
     // ...
-  }
+  },
+  "ignorePatterns": ["src/**/*.test.ts"]
 }
 ```
 
 
 
-## 출처
+## rules
+[typescripteslintrule]: https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin#supported-rules
+
+[Typescript rules][typescripteslintrule]
+
+
+## 참고
 [typescripteslint]: https://typescript-eslint.io/docs/development/architecture/packages/
 [typescript-eslint.io][typescripteslint]
+[]
