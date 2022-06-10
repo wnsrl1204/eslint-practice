@@ -1,5 +1,5 @@
 # eslint-practice
-eslint를 도입하는 방법을 알아보자
+eslint를 사용하는 방법을 알아보자
 
 
 ## 시작하기
@@ -32,9 +32,10 @@ npm init @eslint/config
 
 yarn create @eslint/config
 ```
-유의사항으로, npm init @eslint/config는 package.json 파일이 있다고 가정해서,
+npm init @eslint/config는 기본적으로 package.json 파일이 있다고 가정해서,
 
 만약에 package.json이 없다면, npm init으로 만들어야 실행할 수 있다고 한다.
+
 
 eslint 실행
 ```
@@ -65,28 +66,45 @@ yarn run eslint yourfile.js
 [eslintrules]: https://eslint.org/docs/rules/ "ESLint rules"
 이름은 [rules][eslintrules]에 나온 규칙들에서 선택할 수 있다.
 
-문서를 보면 체크 된 사항은 "eslint:recommended"를 확장했을 경우
+[rules][eslintrules]문서를 보면 ✓체크 된 사항은 "eslint:recommended"를 확장했을 경우
 
 자동적으로 등록된다고 한다.
 
 배열 중 첫번째 값은
-+ "off" or 0 - 규칙을 끄기
-+ "warn" or 1 - 주의(exit 코드에 영향을 미치지 않는다.)
-+ "error" or 2 - 에러(exit 코드 1을 반환한다.)
++ <code>"off"</code> or <code>0</code> - 규칙을 끄기
++ <code>"warn"</code> or <code>1</code> - 주의(exit 코드에 영향을 미치지 않는다.)
++ <code>"error"</code> or <code>2</code> - 에러(exit 코드 1을 반환한다.)
 위의 3가지 수준을 통해서 ESLint는 세밀한 제어를 가능하게 한다.
 
 ### extends
+rules에 확장된 값을 추가한다.
+
+만약 rules와 eslint 둘 다 존재하지 않으면, ESLint는 파일 검사 수행하지 않는다.
+
 npm init @eslint/config를 했을때 기본적으로
 
-"eslint: recommended"가 추가되는데
+"extends" :"eslint: recommended"가 추가되는데
 
-[rules][eslintrules]페이지에 체크된 rules가 자동적으로 포함된다.
-
+[rules][eslintrules]페이지에 ✓체크된 rules가 자동적으로 포함된다.
 
 다른사람의 config file을 보고싶으면
 
 [npmjseslintconfig]: https://www.npmjs.com/search?q=eslint-config "npmjs에서 eslint-config검색"
 [npmjs.com][npmjseslintconfig]에 들어가서 확인하면 된다.
+
+이중 airbnb에서 만든 "eslint-config-airbnb"는 인기있는 확장자 중 하나인데
+
+"extends"에서는 eslint-config- 지시자를 생략하고 사용할 수 있다.
+
+```
+{
+  "extends": [
+    "eslint: recommended",
+    "airbnb"
+  ]
+}
+```
+
 
 ### env
 
@@ -116,17 +134,23 @@ npm init @eslint/config를 했을때 기본적으로
 [parserrule]: https://eslint.org/docs/developer-guide/working-with-custom-parsers
 아래 조건을 충족하는 parser를 사용할 수 있다.
 1. config file에서 불러올 수 잇는 노드모듈, npm을 통해 별도로 설치해야함을 뜻한다.
-2. parser interface를 준수해야한다. [ESLint 개발자 가이드][parserrule] ( 파서를 사용만 할꺼면 User Guide만으로도 충분 )
+2. parser interface를 준수해야한다. [ESLint 개발자 가이드][parserrule] ( parser를 사용만 할꺼면 User Guide만으로도 충분 )
 
 자주 사용되는 parser
-esprima
-@babel/eslint-parser
-@typescript-eslint/parser
+
+<code>esprima</code>
+
+<code>@babel/eslint-parser</code>
+
+<code>@typescript-eslint/parser</code>
 
 ### plugins
 타사 플러그인을 사용가능하다.
+
 사용하기 전 npm을 통해 설치를 해야한다.
+
 esint-plugin- 로 시작하는데,
+
 접두사는 생략가능하다. ( eslint-plugin-react 사용하면 react만 써도 됨 )
 
 ESLint 다른 규칙에서 사용시( rules, env, process 등등 )
@@ -156,9 +180,12 @@ ESLint 다른 규칙에서 사용시( rules, env, process 등등 )
 
 
 ### processor 와 overrides
-플러그인이 제공할 수 있는데,
+플러그인과 함께 제공할 수 있다.
+
 javascript를 추출한 다음
-코드를 Lint 하거나, 코드를 어떤 목적으로 사용할 수 있다.
+
+코드를 Lint 하거나, 코드를 (preprocessor)전처리같은 목적으로 사용할 수 있다.
+
 특정 종류의 파일을 변경하려면 overrides를 사용한다.
 
 모든 파일
@@ -203,8 +230,11 @@ npx eslint lib/**
 ```
 
 주의사항
+
 shell에 따라 glob가 다를 수 있다.
+
 node에서 사용하는 shell을 사용하기 위해서는
+
 아래와 같이 따옴표를 사용하자.
 ```
 npx eslint "lib/**"
@@ -307,13 +337,13 @@ eslint-formatter- 생략 가능
 인라인 주석을 무시
 
 인라인 옵션 종류
-+ /* eslint-disable*/
-+ /* eslint-enable*/
-+ /* global*/
-+ /* eslint*/
-+ /* eslint-env*/
-+ // eslint-disable-line
-+ // eslint-disable-next-line
++ <code>/* eslint-disable*/</code>
++ <code>/* eslint-enable*/</code>
++ <code>/* global*/</code>
++ <code>/* eslint*/</code>
++ <code>/* eslint-env*/</code>
++ <code>// eslint-disable-line</code>
++ <code>// eslint-disable-next-line</code>
 
 ### --init
 npm init @eslint/config와 동일하다.
@@ -331,9 +361,9 @@ npm init @eslint/config와 동일하다.
 
 ## Exit codes
 종료 코드로 ESLint가 제대로 종료 되었는지 확인
-+ 0 - Linting 성공 && ( 에러가 존재하지 않거나 || --max-warings 보다 적은 오류를 가짐 )
-+ 1 - Linting 성공 && ( 에러가 존재 || -max-warings 보다 많은 오류를 가짐 )
-+ 2 - Linting 실패 configuration 문제 또는 내부 에러
++ <code>0</code> - Linting 성공 && ( 에러가 존재하지 않거나 || --max-warings 보다 적은 오류를 가짐 )
++ <code>1</code> - Linting 성공 && ( 에러가 존재 || -max-warings 보다 많은 오류를 가짐 )
++ <code>2</code> - Linting 실패 configuration 문제 또는 내부 에러
 
 
 ## 통합
