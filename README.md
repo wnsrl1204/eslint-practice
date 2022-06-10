@@ -88,20 +88,23 @@ npm init @eslint/config를 했을때 기본적으로
 
 [rules][eslintrules]페이지에 ✓체크된 rules가 자동적으로 포함된다.
 
-다른사람의 config file을 보고싶으면
+다른 사람이 만든 config file을 통해 extends할 수 있다.
+
+다른 사람의 config file을 보고싶으면
 
 [npmjseslintconfig]: https://www.npmjs.com/search?q=eslint-config "npmjs에서 eslint-config검색"
 [npmjs.com][npmjseslintconfig]에 들어가서 확인하면 된다.
 
-이중 airbnb에서 만든 "eslint-config-airbnb"는 인기있는 확장자 중 하나인데
-
-"extends"에서는 eslint-config- 지시자를 생략하고 사용할 수 있다.
+#### 인기 extends
++ <code>eslint-config-airbnb-base</code> Airbnb의 style guide를 eslint의 설정 파일인 .eslintrc.json에 확장해 주는 플러그인(React 관련 플러그인 미포함)
+```
+npm i -D eslint-config-airbnb-base
+```
 
 ```
 {
   "extends": [
-    "eslint: recommended",
-    "airbnb"
+    "airbnb-base"
   ]
 }
 ```
@@ -178,6 +181,24 @@ ESLint 다른 규칙에서 사용시( rules, env, process 등등 )
   }
 }
 ```
+
+#### 인기 plugins
++ <code>eslint-plugin-import</code> ES6+ import/export 지원 플러그인
++ <code>eslint-plugin-html</code> HTML 파일에 포함된 인라인 자바스크립트 지원 플러그인
+
+```
+npm i -D eslint-plugin-import eslint-plugin-html
+```
+
+```
+{
+  "plugins": ["import", "html"],
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+  }
+}
+```
+
 
 
 ### processor 와 overrides
@@ -375,3 +396,6 @@ npm init @eslint/config와 동일하다.
 ## 출처
 [eslint]: https://eslint.org/ "eslint"
 [ESLint 공식문서][eslint]
+
+[poiemaweb]: https://poiemaweb.com/eslint
+[poiemawweb.com][poiemaweb]
